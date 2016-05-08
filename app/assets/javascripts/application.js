@@ -12,6 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require howler
+//= require WAAclock
 //= require_tree .

@@ -1,0 +1,53 @@
+// Place all the styles related to the Pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+#myCanvas{
+  width: 100vw;
+  height: 100vh;
+  /*background-color: pink;*/
+}
+/*#start-button{
+  width: 20px;
+  height: 10px;
+  background-color: red;
+}*/
+.playHead{
+  background-color: red;
+  transform: translate3d(-100%, 0, 0);
+}
+/*.count{
+  position: absolute;
+  height: 20px;
+  background-color: green;
+  width: 400px;
+}*/
+#blink1, #blink2, #blink3, #blink4{
+  border-radius: 50%;
+  border: 1px solid black;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+.container{
+  transform: rotate(45deg);
+  max-width: 200px;
+  margin: auto;
+  margin-top: 150px;
+}
+.box{
+  // transform: rotate(45deg);
+  width: 45px;
+  height: 45px;
+  box-sizing: border-box;
+  display: inline-block;
+  border-collapse: collapse;
+}
+#a, #b, #c, #d, #e{
+  background-color: pink;
+}
+#f, #g, #h, #i, #j, #k{
+  background-color: yellow;
+}
+#l, #m, #n, #o, #p, #q{
+  background-color: blue;
+}
