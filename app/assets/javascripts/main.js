@@ -9,8 +9,8 @@ var audio = {
         '/assets/drum.1.2.mp3',
         '/assets/drum.1.3.mp3',
         '/assets/drum.1.4.mp3',
+        '/assets/drum.1.5.mp3',
         '/assets/drum.1.6.mp3',
-        '/assets/drum.1.7.mp3',
         '/assets/bass.1.1.mp3',
         '/assets/bass.1.2.mp3',
         '/assets/bass.1.3.mp3',
@@ -63,8 +63,11 @@ audio.findSync = function(n) {
 };
 
 audio.play = function(n) {
-  // debugger;
+        $('#loop-' + n).addClass('clicked');
+        $('#loop-' + n).addClass('loopQueuer');
+        nextLoop = ('#loop-' + n);
     if (audio.source_loop[n]._playing) {
+        $('#loop-' + n).removeClass('clicked');
         audio.stop(n);
     } else {
         audio.source_loop[n] = audio.context.createBufferSource();
@@ -73,27 +76,26 @@ audio.play = function(n) {
         audio.source_loop[n].connect(audio.context.destination);
 
         var offset = audio.findSync(n);
-        audio.source_loop[n]._startTime = audio.context.currentTime;
-
+        audio.source_loop[n]._startTime = audio.context.currentTime - offset;
+          // console.log(offset);
         if (audio.compatibility.start === 'noteOn') {
-            /*
-            The depreciated noteOn() function does not support offsets.
-            Compensate by using noteGrainOn() with an offset to play once and then schedule a noteOn() call to loop after that.
-            */
+            //check for compatability
             audio.source_once[n] = audio.context.createBufferSource();
             audio.source_once[n].buffer = audio.buffer[n];
             audio.source_once[n].connect(audio.context.destination);
-            audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset); // currentTime, offset, duration
+            audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset);
             /*
             Note about the third parameter of noteGrainOn().
             If your sound is 10 seconds long, your offset 5 and duration 5 then you'll get what you expect.
             If your sound is 10 seconds long, your offset 5 and duration 10 then the sound will play from the start instead of the offset.
             */
-
             // Now queue up our looping sound to start immediatly after the source_once audio plays.
+
             audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
         } else {
             audio.source_loop[n][audio.compatibility.start](0, offset);
+            console.log(offset);
+            console.log(audio.context.currentTime);
         }
 
         audio.source_loop[n]._playing = true;
@@ -164,7 +166,6 @@ if (audio.proceed) {
                             // e.preventDefault();
                             // debugger;
                             audio.play(dataValue);
-                            console.log(this.value);
                         });
                     },
                     function() {
