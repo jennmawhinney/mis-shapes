@@ -75,6 +75,12 @@ audio.play = function(n) {
         audio.source_loop[n].loop = true;
         audio.source_loop[n].connect(audio.context.destination);
 
+        ////////////Create Buffer Source for Audio Viz/////////////
+        // fft = ctx.createAnalyser();
+        // fft.fftSize = samples;
+        // console.log(samples);
+        //////////////////////////////////////////////////////////
+
         var offset = audio.findSync(n);
         audio.source_loop[n]._startTime = audio.context.currentTime - offset;
           // console.log(offset);
@@ -177,3 +183,17 @@ if (audio.proceed) {
         })();
     }
 }
+
+// var analyse = function(){
+//     debugger;
+//   sound.connect(analyser);
+//
+// sound.connect(context.destination);
+//
+// processor.onaudioprocess = function() {
+//     /* Populate the data array with the frequency data. */
+//     analyser.getByteTimeDomainData(data);
+//     analyser.getByteFrequencyData(data);
+//     console.log(data);
+// };
+// };
