@@ -1,3 +1,4 @@
+$(document).ready(function(){
 //--------------
 // Audio Object
 //--------------
@@ -60,6 +61,7 @@ audio.findSync = function(n) {
     }
 
     return offset;
+    console.log(offset +'from within findSync');
 };
 
 audio.play = function(n) {
@@ -85,6 +87,7 @@ audio.play = function(n) {
         audio.source_loop[n]._startTime = audio.context.currentTime - offset;
           // console.log(offset);
         if (audio.compatibility.start === 'noteOn') {
+          console.log('noteOn = ' + noteOn);
             //check for compatability
             audio.source_once[n] = audio.context.createBufferSource();
             audio.source_once[n].buffer = audio.buffer[n];
@@ -100,7 +103,7 @@ audio.play = function(n) {
             audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
         } else {
             audio.source_loop[n][audio.compatibility.start](0, offset);
-            console.log(offset);
+            console.log('offset = ' + offset);
             console.log(audio.context.currentTime);
         }
 
@@ -169,9 +172,14 @@ if (audio.proceed) {
                         var play = document.getElementById('loop-' + i);
                         var dataValue = $('#loop-' + i).data('value');
                         play.addEventListener('click', function(e) {
-                            // e.preventDefault();
-                            // debugger;
-                            audio.play(dataValue);
+                        // console.log('clicked');
+                        // superDisco();
+                        // console.log('disco?');
+                        // if($(dataValue).hasClass('clicked') && offset === 0){
+                        audio.play(dataValue);
+                      // }else{
+                      //   console.log(offset);
+                      // }
                         });
                     },
                     function() {
@@ -197,3 +205,4 @@ if (audio.proceed) {
 //     console.log(data);
 // };
 // };
+});

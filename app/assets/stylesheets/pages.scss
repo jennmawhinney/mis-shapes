@@ -5,11 +5,11 @@
   width: 100vw;
   height: 100vh;
   position: absolute;;
-  z-index: -1;
   /*background-color: pink;*/
 }
+
 body{
-  background-color: #220526;
+  background-color: #000;
 }
 /*#start-button{
   width: 20px;
@@ -34,11 +34,9 @@ body{
   height: 20px;
 }
 .container{
-  transform: rotate(45deg);
-  max-width: 200px;
-  margin: auto;
-  margin-top: 200px;
-  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
 }
 .box{
   // transform: rotate(45deg);
@@ -50,26 +48,28 @@ body{
   border-radius: 0.2em;
 }
 #loop-1, #loop-2, #loop-3, #loop-4, #loop-5, #loop-6{
-  background-color: #fff;
-  border: 3px solid #FE487C;
+  width: 16.30%;
+  height: 24.25%;
+  background-color: #000;
 }
 #loop-7, #loop-8, #loop-9, #loop-10, #loop-11, #loop-12{
-  background-color: #fff;
-  border: 3px solid #0014FF;
+  width: 16.30%;
+  height: 24.25%;
+  background-color: #000;
 }
 #loop-13, #loop-14, #loop-15, #loop-16, #loop-17, #loop-18, #loop-19, #loop-20, #loop-21, #loop-22, #loop-23, #loop-24{
-  background-color: #fff;
-  border: 3px solid #FEFF50;
+  width: 16.30%;
+  height: 24.25%;
+  background-color: #000;
 }
 #loop-1.clicked, #loop-2.clicked, #loop-3.clicked, #loop-4.clicked, #loop-5.clicked, #loop-6.clicked{
 background-color: #FE487C !important;
-border: 3px solid #fff;
 }
 #loop-7.clicked, #loop-8.clicked, #loop-9.clicked, #loop-10.clicked, #loop-11.clicked, #loop-12.clicked{
-  background-color: #0014FF;
-  border: 3px solid #fff;
+  background-color: #0014FF !important;
+
 }
 #loop-13.clicked, #loop-14.clicked, #loop-15.clicked, #loop-16.clicked, #loop-17.clicked, #loop-18.clicked, #loop-19.clicked, #loop-20.clicked, #loop-21.clicked, #loop-22.clicked, #loop-23.clicked, #loop-24.clicked{
-  background-color: #FEFF50;
-  border: 3px solid #fff;
+  background-color: #FEFF50 !important;
+
 }
