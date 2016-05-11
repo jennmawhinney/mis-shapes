@@ -1,9 +1,9 @@
 $(document).ready(function(){
-
+var audio;
 //--------------
 // Audio Object
 //--------------
-var audio = {
+  audio = {
     buffer: {},
     compatibility: {},
     files: [
@@ -48,7 +48,7 @@ audio.findSync = function(n) {
 
     // Find the audio source with the earliest startTime to sync all others to
     for (var i in audio.source_loop) {
-      // debugger;
+      // console.log('audio source loop =' + audio.source_loop._playing);
         current = audio.source_loop[i]._startTime;
         if (current > 0) {
             if (current < first || first === 0) {
@@ -67,22 +67,18 @@ audio.findSync = function(n) {
 audio.play = function(n) {
         $('#loop-' + n).addClass('clicked');
         $('#loop-' + n).addClass('loopQueuer');
-
         nextLoop = ('#loop-' + n);
+        // $('#loop-' + n).addClass('animated pulse');
+
     if (audio.source_loop[n]._playing) {
         $('#loop-' + n).removeClass('clicked');
+        // $('#loop-' + n).removeClass('animated pulse');
         audio.stop(n);
     } else {
         audio.source_loop[n] = audio.context.createBufferSource();
         audio.source_loop[n].buffer = audio.buffer[n];
         audio.source_loop[n].loop = true;
         audio.source_loop[n].connect(audio.context.destination);
-
-        ////////////Create Buffer Source for Audio Viz/////////////
-        // fft = ctx.createAnalyser();
-        // fft.fftSize = samples;
-        // console.log(samples);
-        //////////////////////////////////////////////////////////
 
         var offset = audio.findSync(n);
         audio.source_loop[n]._startTime = audio.context.currentTime - offset;
@@ -110,6 +106,7 @@ audio.play = function(n) {
 
         audio.source_loop[n]._playing = true;
     }
+
 };
 
 audio.stop = function(n) {
@@ -143,7 +140,6 @@ if (audio.proceed) {
         var start = 'start',
             stop = 'stop',
             buffer = audio.context.createBufferSource();
-
         if (typeof buffer.start !== 'function') {
             start = 'noteOn';
         }
@@ -176,6 +172,7 @@ if (audio.proceed) {
                           var clickedCanvas = $(this);
                           var canvasData = clickedCanvas.data().value;
 
+                        // console.log('request' + req.response);
                           // if(($.find('.sounds.clicked').length >= 4) && $(this).hasClass('sound')){
                           //   $('#loop-' + n).removeClass('clicked');
                           //   audio.stop(n);
@@ -212,8 +209,6 @@ if (audio.proceed) {
                                 audio.play(dataValue);
                               }
                           }
-                          
-
 
                           // else if(($.find('.sounds.clicked').length < 4)){
                           //   audio.play(dataValue);
@@ -243,6 +238,8 @@ if (audio.proceed) {
         })();
     }
 }
+
+
 //////////Queueing Hell////////////////////////////
 // var loopsInQueue = [];
 // var scheduleLoops = function(n, time){

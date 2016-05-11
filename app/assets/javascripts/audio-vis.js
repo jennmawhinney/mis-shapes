@@ -5,10 +5,17 @@ var num;
 $(document).ready(function(){
 	$(document).on(('mouseleave' || 'click'), 'canvas', function(event){
 
-		// if (($.find('.clicked').length === 8)){
-		//
-		// 	// console.log("hi from if")
-		// } else {
+		if (($.find('.clicked').length === 8)){
+			for (var i = 1; i < oldColour.length; i++) {
+				// var compareCanvas = (oldColour[i]['loop']);
+				if(currentCanvas === compareCanvas){
+					// console.log(compareCanvas);
+					num = oldColour[i]['num'];
+					console.log('num = ' + num);
+		}
+	}
+}
+		//else {
 
 			// console.log("hi from else")
 		if($(this).hasClass('clicked') === false){
@@ -46,6 +53,7 @@ $(document).ready(function(){
 			if(currentCanvas === compareCanvas){
 				// console.log(compareCanvas);
 				num = oldColour[i]['num'];
+				console.log(num);
 			}
 		}
 	}
@@ -297,21 +305,21 @@ superDisco = function(){
 };
 superDisco();
 
-var canvas = document.getElementsByTagName('canvas');
-var maxSoundClick = function(){
-	$(document).on('click', 'canvas', function(event){
-		if(($.find('.sounds.clicked').length >= 2)){
-			event.preventDefault;
-		}
-		if(($(this).hasClass('clicked')) && ($(this).hasClass('bass')) ){
-
-		}
-		if(($(this).hasClass('clicked')) && ($(this).hasClass('sounds')) ){
-
-		}
-
-	});
-
-};
+// var canvas = document.getElementsByTagName('canvas');
+// var maxSoundClick = function(){
+// 	$(document).on('click', 'canvas', function(event){
+// 		if(($.find('.sounds.clicked').length >= 2)){
+// 			event.preventDefault;
+// 		}
+// 		if(($(this).hasClass('clicked')) && ($(this).hasClass('bass')) ){
+//
+// 		}
+// 		if(($(this).hasClass('clicked')) && ($(this).hasClass('sounds')) ){
+//
+// 		}
+//
+// 	});
+//
+// };
 
 });
