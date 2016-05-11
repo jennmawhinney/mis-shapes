@@ -1,15 +1,13 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#canvas{
-  width: 100vw;
-  height: 100vh;
-  position: absolute;;
-  /*background-color: pink;*/
-}
-
 body{
   background-color: #000;
+}
+.open{
+  width: 100vw;
+  height: 100vh;
+  background-color: pink;
 }
 /*#start-button{
   width: 20px;
@@ -26,17 +24,11 @@ body{
   background-color: green;
   width: 400px;
 }*/
-#blink1, #blink2, #blink3, #blink4{
-  border-radius: 50%;
-  border: 1px solid black;
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-}
 .container{
   width: 100vw;
   height: 100vh;
   margin: 0 auto;
+  position: relative;
 }
 .box{
   // transform: rotate(45deg);
@@ -51,25 +43,28 @@ body{
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
+  z-index: 1;
 }
 #loop-7, #loop-8, #loop-9, #loop-10, #loop-11, #loop-12{
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
+  z-index: 1;
 }
 #loop-13, #loop-14, #loop-15, #loop-16, #loop-17, #loop-18, #loop-19, #loop-20, #loop-21, #loop-22, #loop-23, #loop-24{
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
+  z-index: 1;
 }
 #loop-1.clicked, #loop-2.clicked, #loop-3.clicked, #loop-4.clicked, #loop-5.clicked, #loop-6.clicked{
-background-color: #FE487C !important;
+border:  2px solid white !important;
 }
 #loop-7.clicked, #loop-8.clicked, #loop-9.clicked, #loop-10.clicked, #loop-11.clicked, #loop-12.clicked{
-  background-color: #0014FF !important;
+  border: 2px solid white !important;
 
 }
 #loop-13.clicked, #loop-14.clicked, #loop-15.clicked, #loop-16.clicked, #loop-17.clicked, #loop-18.clicked, #loop-19.clicked, #loop-20.clicked, #loop-21.clicked, #loop-22.clicked, #loop-23.clicked, #loop-24.clicked{
-  background-color: #FEFF50 !important;
+  border: 2px solid white !important;
 
 }
