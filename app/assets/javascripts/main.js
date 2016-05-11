@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
 //--------------
 // Audio Object
 //--------------
@@ -61,12 +62,12 @@ audio.findSync = function(n) {
     }
 
     return offset;
-    console.log(offset +'from within findSync');
 };
 
 audio.play = function(n) {
         $('#loop-' + n).addClass('clicked');
         $('#loop-' + n).addClass('loopQueuer');
+
         nextLoop = ('#loop-' + n);
     if (audio.source_loop[n]._playing) {
         $('#loop-' + n).removeClass('clicked');
@@ -86,26 +87,26 @@ audio.play = function(n) {
         var offset = audio.findSync(n);
         audio.source_loop[n]._startTime = audio.context.currentTime - offset;
           // console.log(offset);
-        if (audio.compatibility.start === 'noteOn') {
-          console.log('noteOn = ' + noteOn);
-            //check for compatability
-            audio.source_once[n] = audio.context.createBufferSource();
-            audio.source_once[n].buffer = audio.buffer[n];
-            audio.source_once[n].connect(audio.context.destination);
-            audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset);
-            /*
-            Note about the third parameter of noteGrainOn().
-            If your sound is 10 seconds long, your offset 5 and duration 5 then you'll get what you expect.
-            If your sound is 10 seconds long, your offset 5 and duration 10 then the sound will play from the start instead of the offset.
-            */
-            // Now queue up our looping sound to start immediatly after the source_once audio plays.
-
-            audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
-        } else {
+        // if (audio.compatibility.start === 'noteOn') {
+        //     //check for compatability
+        //     audio.source_once[n] = audio.context.createBufferSource();
+        //     audio.source_once[n].buffer = audio.buffer[n];
+        //     audio.source_once[n].connect(audio.context.destination);
+        //     audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset);
+        //     console.log('notegrain' + noteGrainOn);
+        //     /*
+        //     Note about the third parameter of noteGrainOn().
+        //     If your sound is 10 seconds long, your offset 5 and duration 5 then you'll get what you expect.
+        //     If your sound is 10 seconds long, your offset 5 and duration 10 then the sound will play from the start instead of the offset.
+        //     */
+        //     // Now queue up our looping sound to start immediatly after the source_once audio plays.
+        //
+        //     audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
+        // } else {
             audio.source_loop[n][audio.compatibility.start](0, offset);
             console.log('offset = ' + offset);
             console.log(audio.context.currentTime);
-        }
+        // }
 
         audio.source_loop[n]._playing = true;
     }
@@ -116,9 +117,9 @@ audio.stop = function(n) {
         audio.source_loop[n][audio.compatibility.stop](0);
         audio.source_loop[n]._playing = false;
         audio.source_loop[n]._startTime = 0;
-        if (audio.compatibility.start === 'noteOn') {
-            audio.source_once[n][audio.compatibility.stop](0);
-        }
+        // if (audio.compatibility.start === 'noteOn') {
+        //     audio.source_once[n][audio.compatibility.stop](0);
+        // }
     }
 };
 
@@ -172,14 +173,65 @@ if (audio.proceed) {
                         var play = document.getElementById('loop-' + i);
                         var dataValue = $('#loop-' + i).data('value');
                         play.addEventListener('click', function(e) {
-                        // console.log('clicked');
-                        // superDisco();
-                        // console.log('disco?');
-                        // if($(dataValue).hasClass('clicked') && offset === 0){
-                        audio.play(dataValue);
-                      // }else{
-                      //   console.log(offset);
-                      // }
+                          var clickedCanvas = $(this);
+                          var canvasData = clickedCanvas.data().value;
+
+                          // if(($.find('.sounds.clicked').length >= 4) && $(this).hasClass('sound')){
+                          //   $('#loop-' + n).removeClass('clicked');
+                          //   audio.stop(n);
+                          // }
+                          if($(this).hasClass('sounds')){
+                              if (($.find('.sounds.clicked').length >= 4)) {
+
+                                  $(this).removeClass('clicked');
+
+                                  audio.stop(canvasData);
+                              } else {
+                                audio.play(dataValue);
+                              }
+                          }
+
+                          if($(this).hasClass('bass')){
+                              if (($.find('.bass.clicked').length >= 2)) {
+
+                                  $(this).removeClass('clicked');
+
+                                  audio.stop(canvasData);
+                              } else {
+                                audio.play(dataValue);
+                              }
+                          }
+
+                          if($(this).hasClass('beats')){
+                              if (($.find('.beats.clicked').length >= 2)) {
+
+                                  $(this).removeClass('clicked');
+
+                                  audio.stop(canvasData);
+                              } else {
+                                audio.play(dataValue);
+                              }
+                          }
+                          
+
+
+                          // else if(($.find('.sounds.clicked').length < 4)){
+                          //   audio.play(dataValue);
+                          // }
+                          // // else{
+                          // //   audio.play(dataValue);
+                          // // }
+                          // // if(($.find('.bass.clicked').length >= 2)){
+                          // //   return;
+                          // // }
+                          // // if(($.find('.beats.clicked').length >= 2)){
+                          // //   return;
+                          // // }
+                                                  // audio.play(dataValue);
+
+                                                  //else{
+                                                  //   console.log(offset);
+                                                  // }
                         });
                     },
                     function() {
@@ -191,7 +243,18 @@ if (audio.proceed) {
         })();
     }
 }
-
+//////////Queueing Hell////////////////////////////
+// var loopsInQueue = [];
+// var scheduleLoops = function(n, time){
+//   loopsInQueue.push({loops: n, time: time});
+//
+//   if(offset === 0){
+//     //play loopsInQueue
+//   }else{
+//     //wait
+//   }
+// };
+///////////////////////////////////////////////////
 // var analyse = function(){
 //     debugger;
 //   sound.connect(analyser);
