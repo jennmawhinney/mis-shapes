@@ -5,26 +5,12 @@ var num;
 // var isEight = false;
 $(document).ready(function() {
 
-  $(document).on(('mouseleave' || 'click'), 'canvas', function(e) {
 
-    // if (($('.clicked').length === 8)) {
-		//
-    //   // isEight = true;
-		// 	for (var i = 1; i < oldColour.length; i++) {
-    //     // var compareCanvas = (oldColour[i]['loop']);
-    //     if (currentCanvas === compareCanvas) {
-    //       // console.log(compareCanvas);
-    //       num = oldColour[i]['num'];
-    //     }
-    //   }
-    // }
-    ////////
-    // if (isEight === true) {
-		//
-    //   console.log('hello from isEight === true');
-    //   return;
-    // }
-    ////////
+  $(document).on('mouseleave click', 'canvas', function(e) {
+		if($(this).hasClass('clicked') === true){
+			$(this).trigger('mouseenter');
+		}
+
     if ($(this).hasClass('clicked') === false) {
 
       var currentCanvas = $(this).context.id; //finds the canvas that is hovered on
@@ -53,6 +39,7 @@ $(document).ready(function() {
 
       for (var i = 0; i < allCellsInCanvas.length; i++) {
         var cell = allCellsInCanvas[i];
+				// cell['name']='disco';
         cell.a = 0;
         cell.f = 0; // make this better
       }
@@ -62,13 +49,15 @@ $(document).ready(function() {
         if (currentCanvas === compareCanvas) {
           // console.log(compareCanvas);
           num = oldColour[i]['num'];
-          console.log(num);
+          // console.log(num);
         }
       }
     }
-// tricks();
-    // }
-  });
+		// console.log(cells);
+tricks();
+    });
+
+
 
 	// var fakeEvent = {};
 	// $(document).on('click', function () {
@@ -80,26 +69,48 @@ $(document).ready(function() {
 	// 	}
 	// })
 var tricks = function(){
-	if (($('.clicked').length >= 8)) {
-		var rand = function(max, min, is_int) {
-			var max = (max || max === 0) ? max : 1,
-				min = min || 0,
-				gen = min + (max - min) * Math.random();
-			return (is_int) ? Math.round(gen) : gen;
-		};
-		for (var i = 0; i < cells.length; i++) {
-			cell = cells[i];
-			cell.a = .08 / (1 + rand()) * Math.PI;
-			cell.f = rand(2 * Math.PI);
-		}
+	if (($('.clicked').length >= 7)) {
+		// $('canvas').trigger('click');
+
+		for (var i = 0; i < allCellsInCanvas.length; i++) {
+			// var cell = allCellsInCanvas[i];
+			// console.log(cell['name']);
+
+					var rand = function(max, min, is_int) {
+					var max = (max || max === 0) ? max : 1,
+					min = min || 0,
+					gen = min + (max - min) * Math.random();
+					return (is_int) ? Math.round(gen) : gen;
+					};
+
+			// if ((cell[i]['name'] !== 'disco')){
+				for (var i = 0; i < cells.length; i++) {
+					cell = cells[i];
+					// console.log(cells[i]['name'])
+					if ((cells[i]['name'] !== 'disco')){
+						// console.log(cells[i]['name'])
+						cell.a = .08 / (1 + rand()) * Math.PI;
+						cell.f = rand(2 * Math.PI);
+					}
+				}
+			// }
 		// $('canvas:not(.disco)').trigger('click');
 		// $('canvas:not(.disco)').trigger('mouseenter click');
 	}
+};
 	if (($('.clicked').length < 8)) {
-		for (var i = 0; i < cells.length; i++) {
-			cell = cells[i];
-			cell.a = 0;
-			cell.f = 0;
+		// $('canvas').trigger('click');
+
+		for (var j = 0; j < allCellsInCanvas.length; j++) {
+			var cell = allCellsInCanvas[j];
+
+			for (var k = 0; k < cells.length; k++) {
+				if((cells[k]['name'] !== 'disco')){
+					cell = cells[k];
+					cell.a = 0;
+					cell.f = 0;
+				}
+			}
 		}
 	}
 };
@@ -113,10 +124,10 @@ var tricks = function(){
     // }
 
 
-		if (($('.clicked').length === 8)) {
-			// $('canvas:not(.disco)').trigger('click');
-			// $('canvas:not(.disco)').trigger('mouseenter click');
-		}
+		// if (($('.clicked').length === 8)) {
+		// 	// $('canvas:not(.disco)').trigger('click');
+		// 	// $('canvas:not(.disco)').trigger('mouseenter click');
+		// }
 
     var x = event.offsetX;
     var y = event.offsetY;
@@ -261,4 +272,5 @@ var tricks = function(){
   //
   // };
 
-});
+	//Document ready end
+  });

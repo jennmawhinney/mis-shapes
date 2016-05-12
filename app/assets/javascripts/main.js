@@ -68,11 +68,19 @@ audio.play = function(n) {
         $('#loop-' + n).addClass('clicked');
         $('#loop-' + n).addClass('disco');
         $('#loop-' + n).addClass('loopQueuer');
+        for (var i = 0; i < allCellsInCanvas.length; i++) {
+          var cell = allCellsInCanvas[i];
+          cell['name']='disco';
+        }
         nextLoop = ('#loop-' + n);
         // $('#loop-' + n).addClass('animated pulse');
 
     if (audio.source_loop[n]._playing) {
         $('#loop-' + n).removeClass('clicked');
+        for (var i = 0; i < allCellsInCanvas.length; i++) {
+          var cell = allCellsInCanvas[i];
+          cell['name']='';
+        }
         // $('#loop-' + n).removeClass('animated pulse');
         audio.stop(n);
     } else {
@@ -83,23 +91,6 @@ audio.play = function(n) {
 
         var offset = audio.findSync(n);
         audio.source_loop[n]._startTime = audio.context.currentTime - offset;
-          // console.log(offset);
-        // if (audio.compatibility.start === 'noteOn') {
-        //     //check for compatability
-        //     audio.source_once[n] = audio.context.createBufferSource();
-        //     audio.source_once[n].buffer = audio.buffer[n];
-        //     audio.source_once[n].connect(audio.context.destination);
-        //     audio.source_once[n].noteGrainOn(0, offset, audio.buffer[n].duration - offset);
-        //     console.log('notegrain' + noteGrainOn);
-        //     /*
-        //     Note about the third parameter of noteGrainOn().
-        //     If your sound is 10 seconds long, your offset 5 and duration 5 then you'll get what you expect.
-        //     If your sound is 10 seconds long, your offset 5 and duration 10 then the sound will play from the start instead of the offset.
-        //     */
-        //     // Now queue up our looping sound to start immediatly after the source_once audio plays.
-        //
-        //     audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration - offset));
-        // } else {
             audio.source_loop[n][audio.compatibility.start](0, offset);
             console.log('offset = ' + offset);
             console.log(audio.context.currentTime);

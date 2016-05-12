@@ -40,18 +40,21 @@ body{
   border-radius: 0.2em;
 }
 #loop-1, #loop-2, #loop-3, #loop-4, #loop-5, #loop-6{
+  border: 2px solid red;
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
   z-index: 1;
 }
 #loop-7, #loop-8, #loop-9, #loop-10, #loop-11, #loop-12{
+  border: 2px solid blue;
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
   z-index: 1;
 }
 #loop-13, #loop-14, #loop-15, #loop-16, #loop-17, #loop-18, #loop-19, #loop-20, #loop-21, #loop-22, #loop-23, #loop-24{
+  border: 2px solid green;
   width: 16.30%;
   height: 24.25%;
   background-color: #000;
