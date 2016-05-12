@@ -77,10 +77,7 @@ audio.play = function(n) {
 
     if (audio.source_loop[n]._playing) {
         $('#loop-' + n).removeClass('clicked');
-        for (var i = 0; i < allCellsInCanvas.length; i++) {
-          var cell = allCellsInCanvas[i];
-          cell['name']='';
-        }
+
         // $('#loop-' + n).removeClass('animated pulse');
         audio.stop(n);
     } else {
@@ -106,6 +103,11 @@ audio.stop = function(n) {
         audio.source_loop[n][audio.compatibility.stop](0);
         audio.source_loop[n]._playing = false;
         audio.source_loop[n]._startTime = 0;
+        for (var i = 0; i < allCellsInCanvas.length; i++) {
+          var cell = allCellsInCanvas[i];
+          console.log('hi from stop');
+          cell['name']='';
+        }
         // if (audio.compatibility.start === 'noteOn') {
         //     audio.source_once[n][audio.compatibility.stop](0);
         // }

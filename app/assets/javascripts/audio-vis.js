@@ -2,6 +2,11 @@ var superDisco;
 var cells = [];
 var oldColour = [];
 var num;
+var startingColour;
+var IGlobal = 0;
+var JGlobal = 0;
+var cellCount = 1;
+
 // var isEight = false;
 $(document).ready(function() {
 
@@ -57,17 +62,6 @@ $(document).ready(function() {
 tricks();
     });
 
-
-
-	// var fakeEvent = {};
-	// $(document).on('click', function () {
-	// 	if (($('.clicked').length >= 8)) {
-	// 		console.log('8 clicks');
-	// 		$('canvas:not(.clicked)').each(function () {
-	// 			$(this).trigger('mouseenter');
-	// 		});
-	// 	}
-	// })
 var tricks = function(){
 	if (($('.clicked').length >= 7)) {
 		// $('canvas').trigger('click');
@@ -182,20 +176,40 @@ var tricks = function(){
         gen = min + (max - min) * Math.random();
       return (is_int) ? Math.round(gen) : gen;
     };
+
+
+		var huePicker = function(){
+			if ( cellCount < 6 ){
+				hue = 33;
+			}
+			if ( cellCount < 12 && cellCount > 6 ){
+				hue = 22;
+			}
+			if ( cellCount <= 24 && cellCount > 12 ){
+				hue = 0;
+			}
+			return hue;
+		};
+
     var Cell = function(x, y) {
+			huePicker();
+
+			// while J < whatever
+			//  hue is
 
       this.x = x;
       this.y = y;
+
       // this.f = .08/(1 + rand())*Math.PI;
       // this.a = rand(2*Math.PI);
       this.a = 0;
       this.f = 0;
-
+			this.hue = huePicker();
 
 
       this.update = function(t) {
 
-        var hue = num;
+        // var hue = num;
         var percent = 100;
         // if(document.getElementById('loop-1').classList.contains('clicked') === true){
         var l = 40 - 30 * Math.cbrt(Math.sin(this.a + t * this.f));
@@ -205,26 +219,38 @@ var tricks = function(){
         //   var l = 60;
         // }
 
-        if (this.a == 0 && this.f == 0) {
-          hue = 0;
-          percent = 0;
+        if (this.a === 0 && this.f === 0) {
+					// debugger;
+					hue = this.hue;
+					// console.log(hue)
         }
         if (this.a != 0 && this.f != 0) {
+					// debugger;
           hue = num;
 
         }
 
         ct.shadowColor = ct.fillStyle =
           'hsl(' + hue + ',' + percent + '%,' + l + '%)';
+					// debugger
         ct.fillRect(this.x, this.y, real_size, real_size);
+// debugger
+
 
       };
     };
     for (var j = 0; j < ny; j++) {
+			JGlobal = j;
       for (var i = 0; i < nx; i++) {
+				IGlobal = i;
         cells.push(new Cell(offx + (i + .5 * (1 - k)) * cell_size, offy + (j + .5 * (1 - k)) * cell_size));
+				// debugger
+
       }
     }
+
+var colorizeMe
+
     n = cells.length;
     (function ani(t) {
       ct.clearRect(0, 0, w, h);
@@ -235,6 +261,45 @@ var tricks = function(){
     })(0);
 
   };
+
+	// if(i <= 6){
+	// 	num = 30;
+	// }
+	// if((i > 6) && (i <= 12)){
+	// 	num = 60;
+	// }
+	// if(i > 12){
+	// 	num = 90;
+	// }
+
+	var cellColours = function(){
+		// var cells = cells;
+		// console.log(cells);
+		// console.log("cells.length " + cells.length)
+		var rand = function(max, min, is_int) {
+			var max = (max || max === 0) ? max : 1,
+				min = min || 0,
+				gen = min + (max - min) * Math.random();
+			return (is_int) ? Math.round(gen) : gen;
+		};
+
+		for (var i = 0; i <= cells.length; i++) {
+			// console.log(cells[i]['x']);
+			console.log(cells[i])
+			if(i <= 300){
+				startingColour = 30;
+
+			}
+			if((i > 300) && (i <= 600)){
+				startingColour = 60;
+			}
+			if(i > 600){
+				startingColour = 90;
+			}
+
+		}
+
+	};
 
   superDisco = function() {
     num = 0;
@@ -248,29 +313,14 @@ var tricks = function(){
         num: num
       };
       disco(loop, num);
-
+			cellCount += 1;
     }
     // console.log(oldColour);
 
   };
-  superDisco();
 
-  // var canvas = document.getElementsByTagName('canvas');
-  // var maxSoundClick = function(){
-  // 	$(document).on('click', 'canvas', function(event){
-  // 		if(($.find('.sounds.clicked').length >= 2)){
-  // 			event.preventDefault;
-  // 		}
-  // 		if(($(this).hasClass('clicked')) && ($(this).hasClass('bass')) ){
-  //
-  // 		}
-  // 		if(($(this).hasClass('clicked')) && ($(this).hasClass('sounds')) ){
-  //
-  // 		}
-  //
-  // 	});
-  //
-  // };
+  superDisco();
+	// cellColours();
 
 	//Document ready end
   });
