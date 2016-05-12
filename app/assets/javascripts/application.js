@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require welcome.js
 //= require audio-vis.js
 //= require main.js
 //= require_tree .
