@@ -1,64 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Mis-shapes</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-  <div class="container">
-    <div class="modal_container1">
-      <div class="modal">
-        <div id="welcome">
-  <p id='superdisco'><a href='#'>
-    SUPERDISCO
-  </a></p>
-</div>
-      </div>
-    </div>
-    <div class="modal_container2">
-      <div class="modal">
-        <div class="instruct">
-        <p>Welcome to Superdisco!</p>
-        <p>Here anyone can be an amazing DJ if you follow these rules:</p>
-        <p>Click on the squares to create some epic tunes. Make sure to choose
-        2 of the purple squares, 2 of the pink suares and any combination of 4
-        of the blue squares. When you hit 8...Superdisco! You can remove and add
-        squares to create your own hits</p>
+  <head>
+    <title>Mis-shapes</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <div class="container">
+      <div class="modal_container1">
+        <div class="modal">
+          <div id="welcome">
+            <p id='superdisco'>
+              <a href='#'>
+                SUPERDISCO
+              </a>
+            </p>
+          </div>
         </div>
-        <div id="play">
-  <p id='play'><a href='#'>
-    PLAY
-  </a></p>
-</div>
       </div>
+      <div class="modal_container2">
+        <div class="modal">
+          <div class="instruct">
+            <p>Welcome to Superdisco!</p>
+            <p>Here anyone can be an amazing DJ if you follow these rules:</p>
+            <p>Click on the squares to create some epic tunes. Make sure to choose 2 of the pink squares, 2 of the blue suares and any combination of 4 of the purple squares. When you hit 8...Superdisco! You can remove and add squares to create your own hits.</p>
+          </div>
+          <div id="play">
+            <p id='play'>
+              <a href='#'>
+                PLAY
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+      <canvas class="box beats" id="loop-1" data-value="1"></canvas>
+      <canvas class="box beats" id="loop-2" data-value="2"></canvas>
+      <canvas class="box beats" id="loop-3" data-value="3"></canvas>
+      <canvas class="box beats" id="loop-4" data-value="4"></canvas>
+      <canvas class="box beats" id="loop-5" data-value="5"></canvas>
+      <canvas class="box beats" id="loop-6" data-value="6"></canvas>
+      <canvas class="box bass" id="loop-7" data-value="7"></canvas>
+      <canvas class="box bass" id="loop-8" data-value="8"></canvas>
+      <canvas class="box bass" id="loop-9" data-value="9"></canvas>
+      <canvas class="box bass" id="loop-10" data-value="10"></canvas>
+      <canvas class="box bass" id="loop-11" data-value="11"></canvas>
+      <canvas class="box bass" id="loop-12" data-value="12"></canvas>
+      <canvas class="box sounds" id="loop-13" data-value="13"></canvas>
+      <canvas class="box sounds" id="loop-14" data-value="14"></canvas>
+      <canvas class="box sounds" id="loop-15" data-value="15"></canvas>
+      <canvas class="box sounds" id="loop-16" data-value="16"></canvas>
+      <canvas class="box sounds" id="loop-17" data-value="17"></canvas>
+      <canvas class="box sounds" id="loop-18" data-value="18"></canvas>
+      <canvas class="box sounds" id="loop-19" data-value="19"></canvas>
+      <canvas class="box sounds" id="loop-20" data-value="20"></canvas>
+      <canvas class="box sounds" id="loop-21" data-value="21"></canvas>
+      <canvas class="box sounds" id="loop-22" data-value="22"></canvas>
+      <canvas class="box sounds" id="loop-23" data-value="23"></canvas>
+      <canvas class="box sounds" id="loop-24" data-value="24"></canvas>
     </div>
-  <canvas class="box beats" id="loop-1" data-value="1"></canvas>
-  <canvas class="box beats" id="loop-2" data-value="2"></canvas>
-  <canvas class="box beats" id="loop-3" data-value="3"></canvas>
-  <canvas class="box beats" id="loop-4" data-value="4"></canvas>
-  <canvas class="box beats" id="loop-5" data-value="5"></canvas>
-  <canvas class="box beats" id="loop-6" data-value="6"></canvas>
-  <canvas class="box bass" id="loop-7" data-value="7"></canvas>
-  <canvas class="box bass" id="loop-8" data-value="8"></canvas>
-  <canvas class="box bass" id="loop-9" data-value="9"></canvas>
-  <canvas class="box bass" id="loop-10" data-value="10"></canvas>
-  <canvas class="box bass" id="loop-11" data-value="11"></canvas>
-  <canvas class="box bass" id="loop-12" data-value="12"></canvas>
-  <canvas class="box sounds" id="loop-13" data-value="13"></canvas>
-  <canvas class="box sounds" id="loop-14" data-value="14"></canvas>
-  <canvas class="box sounds" id="loop-15" data-value="15"></canvas>
-  <canvas class="box sounds" id="loop-16" data-value="16"></canvas>
-  <canvas class="box sounds" id="loop-17" data-value="17"></canvas>
-  <canvas class="box sounds" id="loop-18" data-value="18"></canvas>
-  <canvas class="box sounds" id="loop-19" data-value="19"></canvas>
-  <canvas class="box sounds" id="loop-20" data-value="20"></canvas>
-  <canvas class="box sounds" id="loop-21" data-value="21"></canvas>
-  <canvas class="box sounds" id="loop-22" data-value="22"></canvas>
-  <canvas class="box sounds" id="loop-23" data-value="23"></canvas>
-  <canvas class="box sounds" id="loop-24" data-value="24"></canvas>
-  </div>
-<%= yield %>
-</body>
+    <%= yield %>
+  </body>
 </html>

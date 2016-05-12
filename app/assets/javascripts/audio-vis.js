@@ -177,51 +177,51 @@ $(document).ready(function() {
       return (is_int) ? Math.round(gen) : gen;
     };
 
-//////////////set hues///////////////////
-		var huePicker = function() {
-			if (cellCount < 6) {
-				hue = 300;
-			}
-			if (cellCount < 12 && cellCount > 6) {
-				hue = 322;
-			}
-			if (cellCount <= 24 && cellCount > 12) {
-				hue = 240;
-			}
-			return hue;
-		};
+    //////////////set hues///////////////////
+    var huePicker = function() {
+      if (cellCount < 6) {
+        hue = 305;
+      }
+      if (cellCount < 12 && cellCount > 6) {
+        hue = 240;
+      }
+      if (cellCount <= 24 && cellCount > 12) {
+        hue = 273;
+      }
+      return hue;
+    };
 
-		var percentPicker = function() {
-			if (cellCount < 6) {
-				percent = 100;
-			}
-			if (cellCount < 12 && cellCount > 6) {
-				percent = 100;
-			}
-			if (cellCount <= 24 && cellCount > 12) {
-				percent = 100;
-			}
-			return percent;
-		};
+    var percentPicker = function() {
+      if (cellCount < 6) {
+        percent = 100;
+      }
+      if (cellCount < 12 && cellCount > 6) {
+        percent = 100;
+      }
+      if (cellCount <= 24 && cellCount > 12) {
+        percent = 100;
+      }
+      return percent;
+    };
 
     var lPicker = function() {
       if (cellCount < 6) {
-        l = 8;
+        l = 10;
       }
       if (cellCount < 12 && cellCount > 6) {
-        l = 15;
+        l = 9;
       }
       if (cellCount <= 24 && cellCount > 12) {
-        l = 10;
+        l = 6;
       }
       return l;
     };
-/////////////////////////////////////////////
+    /////////////////////////////////////////////
 
     var Cell = function(x, y) {
       huePicker();
-			percentPicker();
-			lPicker();
+      percentPicker();
+      lPicker();
 
       this.x = x;
       this.y = y;
@@ -229,20 +229,20 @@ $(document).ready(function() {
       this.a = 0;
       this.f = 0;
       this.hue = huePicker();
-			this.percent = percentPicker();
-			this.l = lPicker();
+      this.percent = percentPicker();
+      this.l = lPicker();
 
       this.update = function(t) {
 
         if (this.a === 0 && this.f === 0) {
           hue = this.hue;
-					percent = this.percent;
-					l = this.l;
+          percent = this.percent;
+          l = this.l;
         }
         if (this.a != 0 && this.f != 0) {
           hue = num;
-					var percent = 100;
-					var l = 40 - 30 * Math.cbrt(Math.sin(this.a + t * this.f));
+          var percent = 100;
+          var l = 40 - 30 * Math.cbrt(Math.sin(this.a + t * this.f));
         }
 
         ct.shadowColor = ct.fillStyle =
