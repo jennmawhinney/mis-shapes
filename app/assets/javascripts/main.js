@@ -66,6 +66,7 @@ audio.findSync = function(n) {
 
 audio.play = function(n) {
         $('#loop-' + n).addClass('clicked');
+        $('#loop-' + n).addClass('disco');
         $('#loop-' + n).addClass('loopQueuer');
         nextLoop = ('#loop-' + n);
         // $('#loop-' + n).addClass('animated pulse');
