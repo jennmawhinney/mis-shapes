@@ -1,3 +1,4 @@
+//Globals
 var superDisco;
 var cells = [];
 var oldColour = [];
@@ -7,10 +8,8 @@ var IGlobal = 0;
 var JGlobal = 0;
 var cellCount = 1;
 
-// var isEight = false;
 $(document).ready(function() {
-
-
+//this happens on mouseleave or click
   $(document).on('mouseleave click', 'canvas', function(e) {
     if ($(this).hasClass('clicked') === true) {
       $(this).trigger('mouseenter');
@@ -31,44 +30,32 @@ $(document).ready(function() {
       var cellY = Math.floor(y / width);
 
       var cellIndex = (canvasCount * 50) + (cellY * 10) + cellX;
-      // 	if (($.find('.clicked').length === 8)){
-      // 		var cell = [], n;
-      // 	console.log('hi from cells');
-      // } else {
-      // 	console.log("hi from else cells");
-      // 	var cell = cells[ cellIndex ]; // Specific cell clicked
-      // 	// cell.a = 0; cell.f = 0; // make this better
-      // }
+
       var firstCellInCanvas = (canvasCount * 50);
       allCellsInCanvas = cells.slice(firstCellInCanvas, firstCellInCanvas + 50);
 
+      //finds all cells in the current canvas
       for (var i = 0; i < allCellsInCanvas.length; i++) {
         var cell = allCellsInCanvas[i];
-        // cell['name']='disco';
         cell.a = 0;
-        cell.f = 0; // make this better
+        cell.f = 0;
       }
-
+//toggles between the current and old colours for the specific canvas you're on
+//calls tricks to set the sparkles
       for (var i = 1; i < oldColour.length; i++) {
         var compareCanvas = (oldColour[i]['loop']);
         if (currentCanvas === compareCanvas) {
-          // console.log(compareCanvas);
           num = oldColour[i]['num'];
-          // console.log(num);
         }
       }
     }
-    // console.log(cells);
     tricks();
   });
-
+//this sets the sparkles using the mad random math and applies it to all the cells in the canvas
   var tricks = function() {
     if (($('.clicked').length >= 7)) {
-      // $('canvas').trigger('click');
 
       for (var i = 0; i < allCellsInCanvas.length; i++) {
-        // var cell = allCellsInCanvas[i];
-        // console.log(cell['name']);
 
         var rand = function(max, min, is_int) {
           var max = (max || max === 0) ? max : 1,
@@ -77,23 +64,16 @@ $(document).ready(function() {
           return (is_int) ? Math.round(gen) : gen;
         };
 
-        // if ((cell[i]['name'] !== 'disco')){
         for (var i = 0; i < cells.length; i++) {
           cell = cells[i];
-          // console.log(cells[i]['name'])
           if ((cells[i]['name'] !== 'disco')) {
-            // console.log(cells[i]['name'])
             cell.a = .08 / (1 + rand()) * Math.PI;
             cell.f = rand(2 * Math.PI);
           }
         }
-        // }
-        // $('canvas:not(.disco)').trigger('click');
-        // $('canvas:not(.disco)').trigger('mouseenter click');
       }
     };
     if (($('.clicked').length < 8)) {
-      // $('canvas').trigger('click');
 
       for (var j = 0; j < allCellsInCanvas.length; j++) {
         var cell = allCellsInCanvas[j];
@@ -111,23 +91,12 @@ $(document).ready(function() {
 
 
   $(document).on('mouseenter', 'canvas', function(event) {
-    // if ((($.find('.clicked').length === 8) && (isEight === true))) {
-    //
-    //   console.log('hello from isEight === true');
-    //   return;
-    // }
 
-
-    // if (($('.clicked').length === 8)) {
-    // 	// $('canvas:not(.disco)').trigger('click');
-    // 	// $('canvas:not(.disco)').trigger('mouseenter click');
-    // }
-
+//the following checks which cell within which canvas the mouse is in.
+//this is used to switch on the disco
     var x = event.offsetX;
     var y = event.offsetY;
-
     var canvasCount = $(this).prevAll().length;
-
     var width = $(this).width() / 10;
 
     var cellX = Math.floor(x / width);
@@ -136,11 +105,11 @@ $(document).ready(function() {
     var cellIndex = (canvasCount * 50) + (cellY * 10) + cellX;
 
     var cell = cells[cellIndex]; // Specific cell clicked
-    // cell.a = 0; cell.f = 0; // make this better
 
     var firstCellInCanvas = (canvasCount * 50);
     allCellsInCanvas = cells.slice(firstCellInCanvas, firstCellInCanvas + 50);
 
+//makes sparkles
     var rand = function(max, min, is_int) {
       var max = (max || max === 0) ? max : 1,
         min = min || 0,
@@ -150,13 +119,13 @@ $(document).ready(function() {
 
     for (var i = 0; i < allCellsInCanvas.length; i++) {
       var cell = allCellsInCanvas[i];
-      //	cell.a = 0; cell.f = 0; // make this better
       cell.a = .08 / (1 + rand()) * Math.PI;
       cell.f = rand(2 * Math.PI);
     }
   });
 
-
+//Disco runs everything - it creates the cells and sets and updates the colours (in the update function)
+//It calls superDisco which creates all the canvses and chucks the cells inside.
   var disco = function(id, num) {
     var c = document.getElementById(id),
       ct = c.getContext('2d'),
@@ -190,7 +159,7 @@ $(document).ready(function() {
       }
       return hue;
     };
-
+    ///////////////set percents//////////////
     var percentPicker = function() {
       if (cellCount < 6) {
         percent = 100;
@@ -203,7 +172,7 @@ $(document).ready(function() {
       }
       return percent;
     };
-
+    /////////////////set l//////////////////
     var lPicker = function() {
       if (cellCount < 6) {
         l = 10;
@@ -216,8 +185,8 @@ $(document).ready(function() {
       }
       return l;
     };
-    /////////////////////////////////////////////
-
+    ////////////////////Cell creator///////////////////////
+    //each cell contains and s and y c
     var Cell = function(x, y) {
       huePicker();
       percentPicker();
@@ -244,7 +213,7 @@ $(document).ready(function() {
           var percent = 100;
           var l = 40 - 30 * Math.cbrt(Math.sin(this.a + t * this.f));
         }
-
+//this fills the cells with awesome
         ct.shadowColor = ct.fillStyle =
           'hsl(' + hue + ',' + percent + '%,' + l + '%)';
         ct.fillRect(this.x, this.y, real_size, real_size);
@@ -298,7 +267,6 @@ $(document).ready(function() {
     num = 0;
     arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
     for (var i = 1; i <= arr.length; i++) {
-      // console.log($(this).closest());
       loop = ("loop-" + [i]);
       num = num + 50;
       oldColour[i] = {
@@ -308,12 +276,9 @@ $(document).ready(function() {
       disco(loop, num);
       cellCount += 1;
     }
-    // console.log(oldColour);
-
   };
 
   superDisco();
-  // cellColours();
 
   //Document ready end
 });

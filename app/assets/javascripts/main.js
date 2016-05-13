@@ -3,6 +3,8 @@ $(document).ready(function() {
   //--------------
   // Audio Object
   //--------------
+
+  //not courtesy of Madeon...
   audio = {
     buffer: {},
     compatibility: {},
@@ -63,20 +65,22 @@ $(document).ready(function() {
     return offset;
   };
 
+//plays the loop and add the clicked function to the loop and the disco name to the cells
+//that have the class of clicked
+//plays the first track
   audio.play = function(n) {
     $('#loop-' + n).addClass('clicked');
-    $('#loop-' + n).addClass('disco');
-    $('#loop-' + n).addClass('loopQueuer');
     for (var i = 0; i < allCellsInCanvas.length; i++) {
       var cell = allCellsInCanvas[i];
       cell['name'] = 'disco';
     }
     nextLoop = ('#loop-' + n);
-
+//if a track is playing and you click it will stop and the class clicked is removed
     if (audio.source_loop[n]._playing) {
       $('#loop-' + n).removeClass('clicked');
       audio.stop(n);
     } else {
+//if a track is playing and you click another canvas it will
       audio.source_loop[n] = audio.context.createBufferSource();
       audio.source_loop[n].buffer = audio.buffer[n];
       audio.source_loop[n].loop = true;
@@ -93,7 +97,7 @@ $(document).ready(function() {
     }
 
   };
-
+//stops a track in its tracks
   audio.stop = function(n) {
     if (audio.source_loop[n]._playing) {
       audio.source_loop[n][audio.compatibility.stop](0);
@@ -141,6 +145,7 @@ $(document).ready(function() {
     //-------------------------------
     // Setup Audio Files and Buttons
     //-------------------------------
+    //gets and sets the audio
     for (var a in audio.files) {
       (function() {
         var i = parseInt(a) + 1;
@@ -159,6 +164,7 @@ $(document).ready(function() {
                 var clickedCanvas = $(this);
                 var canvasData = clickedCanvas.data().value;
 
+                //sets limits on how many sounds in each category
                 if ($(this).hasClass('sounds')) {
                   if (($.find('.sounds.clicked').length >= 4)) {
 
