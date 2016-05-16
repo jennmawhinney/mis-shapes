@@ -105,7 +105,6 @@ $(document).ready(function() {
       audio.source_loop[n]._startTime = 0;
       for (var i = 0; i < allCellsInCanvas.length; i++) {
         var cell = allCellsInCanvas[i];
-        console.log('hi from stop');
         cell['name'] = '';
       }
     }
