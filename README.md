@@ -13,7 +13,7 @@ Once you hit eight...superdisco!
 
 Visit https://superdisco.herokuapp.com to have a whale of a time!
 
-Source:
+Sources:
 Madeon for the samples.
 
 ### Acknowledgements
